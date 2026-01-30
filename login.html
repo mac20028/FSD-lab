@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College Login</title>
+
+<style>
+:root {
+  --purple: #7f5cff;
+  --emerald: #2ee59d;
+  --gold: #ffd166;
+  --glass: rgba(255,255,255,0.08);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(120deg, #1b0f2e, #0b1a2a, #1a0f1f);
+  background-size: 400% 400%;
+  animation: shimmer 12s ease infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 0 40px rgba(127,92,255,0.35);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  background: linear-gradient(90deg, var(--gold), var(--emerald), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ✅ MEDIUM SPACING HERE */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  font-size: 0.95rem;
+}
+
+input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--emerald);
+}
+
+.error {
+  font-size: 0.8rem;
+  color: #ff6b6b;
+  margin-top: 0.3rem;
+  display: none;
+}
+
+button {
+  margin-top: 0.5rem;
+  padding: 0.8rem;
+  border-radius: 12px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: linear-gradient(120deg, var(--gold), var(--emerald), var(--purple));
+  background-size: 200%;
+  transition: transform 0.2s, background-position 0.4s;
+}
+
+button:hover {
+  background-position: right;
+  transform: translateY(-2px);
+}
+
+.forgot {
+  text-align: right;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.forgot a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.nav {
+  text-align: center;
+  margin-top: 1.2rem;
+  font-size: 0.85rem;
+}
+
+.nav a {
+  color: var(--emerald);
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+<div class="card">
+  <h1>College Portal</h1>
+
+  <form id="loginForm">
+
+    <div class="form-group">
+      <input type="email" id="email" placeholder="Email address">
+      <div class="error" id="emailError">Enter a valid email</div>
+    </div>
+
+    <div class="form-group">
+      <input type="password" id="password" placeholder="Password">
+      <div class="error" id="passError">Password required</div>
+    </div>
+
+    <div class="forgot">
+      <a href="#">Forgot password?</a>
+    </div>
+
+    <button type="submit">Login</button>
+  </form>
+
+  <div class="nav">
+    New here? <a href="register.html">Create an account</a>
+  </div>
+</div>
+
+<script>
+const form = document.getElementById("loginForm");
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+
+  const email = document.getElementById("email");
+  const pass = document.getElementById("password");
+
+  document.getElementById("emailError").style.display =
+    email.value.includes("@") ? "none" : "block";
+
+  document.getElementById("passError").style.display =
+    pass.value ? "none" : "block";
+
+  if (email.value.includes("@") && pass.value) {
+    alert("Login successful (demo)");
+    form.reset();
+  }
+});
+</script>
+</body>
+</html>
